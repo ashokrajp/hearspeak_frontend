@@ -1,0 +1,171 @@
+<app-header></app-header>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="isHandset ? false : true" class="history">
+    <app-slider></app-slider>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="toggle-button">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon style="color: white;">menu</mat-icon>
+      </button>
+
+    </div>
+
+
+    <!--   
+    <div class="container-fluid main-container">
+      <div class="row">
+        <div class="col-md-12 mt-1 nameclass">
+          <h3 class="greeting" style="margin-left: 5%;">Hey, I am {{ name }}</h3>
+          <div class="row chatmain">
+            <div class="col-md-6 col-sm-12">
+              <div class="logo-container text-center mt-4">
+                <img src="/assets/woman2.jpg" alt="Logo" class="logo-img" *ngIf="image_name === 'woman'">
+                <img src="/assets/manwil.jpg" alt="Logo" class="logo-img" *ngIf="image_name === 'man'">
+                <img src="/assets/music2.gif" alt="Animation" class="animation-overlay">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 msgclass">
+              <div class="container chat-container" #chatContainer>
+                <div class="row message-body" *ngFor="let row of rows">
+                  <div class="col-12" [ngClass]="{'message-main-sender': row.user_prompt, 'message-main-receiver': row.text}">
+                    <div class="sender" *ngIf="row.user_prompt">
+                      <div class="message-text" style="float: right;" id="senderdata">{{ row.user_prompt }}</div>
+                    </div>
+                    <div class="receiver" *ngIf="row.text" style="margin-top: 10%;"  >
+                      <div class="message-text" >{{ row.text }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row message-body" *ngIf="isTyping">
+                  <div class="col-12 message-main-receiver">
+                    <div class="receiver">
+                      <div class="message-text">Typing...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer text-center mt-2">
+            <div class="input-group" style="border: 1px solid; background-color: rgb(56, 56, 56); border-radius: 10px;">
+              <input type="text"
+                     style="color: white; background-color: rgb(56, 56, 56); width: 85%;"
+                     [placeholder]="speechRecognitionService.isListening ? 'Listening...' : 'Message ChatGPT'"
+                     [(ngModel)]="message"
+                     (keydown.enter)="sendMessage()">
+              <div class="col-sm-1 col-xs-1 reply-recording mt-2">
+                <i class="fa fa-microphone fa-2x"
+                   [@vibrate]="isPulsating ? 'end' : 'start'"
+                   [ngStyle]="{'color': isPulsating ? 'red' : 'inherit'}"
+                   (click)="togglePulsate()"  style="    margin-left: 39px;
+                   margin-top: 10px;
+                   font-size: 21px;"></i>
+              </div>
+              <button class="btn" style="background-color: rgb(56, 56, 56)" (click)="sendMessage()">&#10148;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="container-fluid main-container">
+      <div class="row">
+        <div class="col-md-12 mt-1 nameclass">
+          <div class=" d-flex   justify-content-between align-items-center ">
+            <div class="col-6 d-flex flex-nowrap justify-content-start  ">
+              <h3 class="greeting ms-5">Hey, I am {{ name }}</h3>
+            </div>
+            <div class="col-6  d-flex  justify-content-space-between align-items-center mb-2 flex-wrap" id="langbtn">
+              <div class=" d-flex align-items-center selectlang" *ngIf="token">
+                <div>
+                  <select class="form-control" [(ngModel)]="selectedLanguage" (change)="changeLanguage($event)"
+                    id="language" style="    background-color: darkorchid; color: white;">
+                    <option value="english">English</option>
+                    <option value="hindi" >Hindi</option>
+                  </select>
+                </div>
+                <div class="mt-2 ms-2 miclang">
+                  <i class="fa" [ngClass]="isMuted ? 'fa-volume-mute' : 'fa-volume-up'" (click)="toggleMute()"></i>
+                </div>
+              </div>
+              <div>
+                <button class="btn loginbtn ms-5 " style="background-color: rgb(255, 191, 29);" routerLink="/login"
+                  *ngIf="!token">Login</button>
+
+                <select class="form-control ms-3" [(ngModel)]="selectedImage" (change)="changeImage($event)"
+                  id="imageSelector" style=" background-color: darkorchid; color: white"   *ngIf="token">
+                  <option value="Theame">Theme</option>
+                  <option value="assets/rose1.jpg">Rose pattels</option>
+                  <option value="assets/rose2.jpg">Red Rose</option>
+                  <option value="assets/rose3.jpg">Roses</option>
+                  <option value="assets/star3.jpg">star</option>
+                  <option value="assets/background.jpg">heart</option>
+                </select>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row chatmain">
+            <div class="col-md-6 col-sm-12">
+              <div class="logo-container text-center mt-4">
+                <img src="/assets/woman2.jpg" alt="Logo" class="logo-img" *ngIf="image_name === 'female'">
+                <img src="/assets/manwil.jpg" alt="Logo" class="logo-img" *ngIf="image_name === 'male'">
+                <img src="/assets/music2.gif" alt="Animation" class="animation-overlay">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 msgclass">
+
+
+              <div class="container chat-container" #chatContainer style="border: 5px solid #fff;" [ngStyle]="{'background-image': 'url(' + selectedImage + ')'}">
+                <!-- <div class="banner">
+                  <img src="/assets/border1.png" alt="" srcset="">
+                </div> -->
+                <div class="row message-body" *ngFor="let row of rows">
+                  <div class="col-12"
+                    [ngClass]="{'message-main-sender': row.user_prompt, 'message-main-receiver': row.text}">
+                    <div class="sender" *ngIf="row.user_prompt">
+                      <div class="message-text" id="senderdata">{{ row.user_prompt }} </div>
+                    </div>
+                    <div class="receiver" *ngIf="row.text">
+                      <div class="message-text">{{ row.text }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 message-main-receiver" *ngIf="!rows ">
+                  <div class="receiver">
+                    <div class="message-text">Let's Chat </div>
+                  </div>
+                </div>
+                <div class="row message-body" *ngIf="isTyping && rows.length > 0">
+                  <div class="col-12 message-main-receiver">
+                    <div class="receiver">
+                      <div class="message-text">Typing...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer text-center mt-2">
+            <div class="input-group" style="border: 3px solid; background-color: rgb(56, 56, 56); border-radius: 5px;">
+              <input type="text" style="color: white; background-color: rgb(56, 56, 56); width: 85%;"
+                [placeholder]="speechRecognitionService.isListening ? 'Listening...' : 'Message ChatGPT'"
+                [(ngModel)]="message" (keydown.enter)="sendMessage()">
+              <div class="col-sm-1 col-xs-1 reply-recording mt-2">
+                <i class="fa fa-microphone fa-2x" [@vibrate]="isPulsating ? 'end' : 'start'"
+                  [ngStyle]="{'color': isPulsating ? 'red' : 'inherit'}" (click)="togglePulsate()"
+                  style="margin-left: 39px; margin-top: 10px; font-size: 21px;"></i>
+              </div>
+              <button class="btn" style="background-color: rgb(56, 56, 56)" (click)="sendMessage()">&#10148;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

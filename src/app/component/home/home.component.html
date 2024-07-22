@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="cards-container" style="background-image: url('/assets/background.jpg'); background-repeat: no-repeat; background-size: cover"  >
+ 
+  <div class="row">
+  <div class="col-sm-12 col-md-6 " id="manai">
+    <div class="card-wrap" (click)="openDialog('male')">
+      <div class="card">
+        <!-- <div class="card-bg"> -->
+          <!-- <div class="image-placeholder"> -->
+            <img src="/assets/manai.jpg" alt="Card Image">
+          <!-- </div> -->
+        <!-- </div> -->
+        <div class="card-info">
+          <p>Hey, do you want to say something?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 " id="womanai">
+    <div class="card-wrap" (click)="openDialog('female')">
+      <div class="card">
+        <!-- <div class="card-bg"> -->
+          <!-- <div class="image-placeholder"> -->
+            <img src="/assets/womanai.jpg" alt="Card Image">
+          <!-- </div> -->
+        <!-- </div> -->
+        <div class="card-info">
+          <!-- <p>Your card information goes here</p> -->
+          <p>Hey, do you want to say something?</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+  </div>
+  
+
+<app-footer></app-footer>

@@ -1,0 +1,21 @@
+
+<form  id="form" [formGroup]="addInform" (ngSubmit)="addProduct()" enctype="multipart/form-data">
+    <div mat-dialog-content style="background-color: #cf5b82;">
+      
+        <mat-form-field>
+            <mat-label> Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput type="number" formControlName="age">
+        </mat-form-field><br>
+
+
+    </div>
+
+    <div mat-dialog-actions style="display: flex; justify-content: center;background-color: #cf5b82;"  >
+        <button type="submit" style="color: white;" mat-button cdkFocusInitial>Add</button>
+    </div>
+</form>
+

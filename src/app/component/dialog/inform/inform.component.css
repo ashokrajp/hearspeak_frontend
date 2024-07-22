@@ -1,0 +1,4 @@
+.mat-mdc-dialog-container .mdc-dialog__content {
+    background: #cf5b82;
+    color: var(--mdc-dialog-supporting-text-color, rgba(0, 0, 0, 0.6));
+}

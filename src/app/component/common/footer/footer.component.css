@@ -1,0 +1,58 @@
+/* Base styles for the animation container */
+.animation-container {
+    background-color: #391965;
+    padding: 12px 0; /* Adjust padding for spacing */
+}
+
+/* Styles for the animations */
+.animation-container .animation,
+.animation-container .animation2 {
+    width: 100%;
+    max-width: 290px; /* Max width for larger screens */
+    height: 80%; /* Maintain aspect ratio */
+    animation: up-down 6s linear infinite;
+}
+
+/* Animation keyframes */
+@keyframes up-down {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-90px); /* Adjust animation movement */
+    }
+}
+
+/* Styles for the content inside .col-md-3 */
+.animation-container .about-section {
+    margin-bottom: 20px;
+    margin-left: 10%;
+    color: #fff; /* Text color */
+}
+
+.animation-container .about-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.animation-container .about-section p {
+    font-size: 14px;
+}
+
+.animation-container .about-image {
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 10%;
+
+}
+
+.animation-container .about-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.animation-container .image-caption {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
+}
