@@ -51,10 +51,10 @@ console.log("-----------hello");
             icon: 'success'
           })
           localStorage.setItem('token', data.data.token)
-          localStorage.setItem('name', data.data.name)
+          // localStorage.setItem('name', data.data.name)
           //  this.authService.storeNotPermissionData()
 
-          this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/chat')
 
         } else {
           Swal.fire({

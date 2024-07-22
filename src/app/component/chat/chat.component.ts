@@ -232,6 +232,7 @@ export class ChatComponent {
         let obj = {
           defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like female your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name} and always I am a male and always reply in ${this.selectedLanguage}.`,
           prompt: tempMessage,
+          history:this.new_history != '' && this.new_history != undefined && this.new_history.length > 0 ? this.new_history : [],
           // history:this.rows
         };
   
