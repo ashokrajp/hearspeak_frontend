@@ -2,7 +2,7 @@
 
 
 export const environment = {
-    production: false,
+    production:true,
     // API_URL:'http://192.168.1.231:9756/api/services/',
     // API_URL_AUTH:'http://localhost:9756/api/auth/',
   
