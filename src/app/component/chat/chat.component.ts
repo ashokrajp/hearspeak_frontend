@@ -239,6 +239,8 @@ export class ChatComponent {
         console.log("---------------------------oi2bj",obj);
         
         this.authService.sendMsg(obj).subscribe((data: any) => {
+        console.log("-----------------------after api calll ----oi2bj",data);
+
           this.isTyping = true;
           setTimeout(() => {
             this.isTyping = false;
