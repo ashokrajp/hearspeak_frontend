@@ -55,7 +55,7 @@
   .logo-img {
     display: block;
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     border-radius: 10px;
     width: 300px;
     height:300px; 

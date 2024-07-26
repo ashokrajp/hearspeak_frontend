@@ -6,4 +6,5 @@ export const GLOBALS =
     GET_GEMINI_DATA: 'getGeminiChat',
     CLEAR_CHAT_DATA: 'clear_chat',
     LOGOUT: 'log_out',
+    check_token: 'check_token',
 }

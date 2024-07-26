@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class AuthService {
 
   token: any
@@ -46,6 +48,16 @@ export class AuthService {
         'Content-Type': 'application/json',
         'api-key': '2VOZ6okReKyWPj4oQFqJui0DkcrYlivttrOK/4iBTD4=',
         'token': this.token
+      }
+    })
+  }
+  validateToken = (body: any): Observable<any> => {
+    return this.httpClient.post(`${environment.API_URL}${GLOBALS.check_token}`, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': '2VOZ6okReKyWPj4oQFqJui0DkcrYlivttrOK/4iBTD4=',
+        'token': this.token
+
       }
     })
   }

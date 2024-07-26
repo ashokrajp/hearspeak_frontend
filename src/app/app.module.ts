@@ -26,6 +26,9 @@ import { LoginComponent } from './component/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { SignupComponent } from './component/signup/signup.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorComponent } from './component/error/error.component';
+import { AboutusComponent } from './component/aboutus/aboutus.component';
+import { TermandconditionComponent } from './component/termandcondition/termandcondition.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { ToastrModule } from 'ngx-toastr';
     SliderComponent,
     LoginComponent,
     SignupComponent,
+    ErrorComponent,
+    AboutusComponent,
+    TermandconditionComponent,
   ],
   imports: [
     BrowserModule,

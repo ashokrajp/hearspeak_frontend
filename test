@@ -1,0 +1,1 @@
+/home/hlink/sonar/sonar-scanner/bin/sonar-scanner \-Dsonar.projectKey=hearspeakback \-Dsonar.sources=. \-Dsonar.host.url=http://localhost:9000 \-Dsonar.login=sqp_5cf58c98d7c84bcc7e1796fb82764c638b0fcd86
