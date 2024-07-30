@@ -45,7 +45,6 @@ export class SliderComponent {
 
   logout() {
     console.log("---------------logout");
-  
     Swal.fire({
       title: 'Are you sure?',
       text: "You want to logout",

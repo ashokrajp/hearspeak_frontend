@@ -33,6 +33,7 @@ export class ChatComponent {
   image_name: any;
   token: any;
   new_history: any;
+  rownew: any;
   name: any;
   rows: any[] = [];
   isPulsating = false;
@@ -128,7 +129,6 @@ export class ChatComponent {
         let obj = {
           defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also dont repeat unneccessary word like name and age.`,
           prompt: tempMessage,
-          history:this.new_history != '' && this.new_history != undefined && this.new_history.length > 0 ? this.new_history : [],
           name:this.name
         };
         this.authService.sendMsg(obj).subscribe((data: any) => {
@@ -161,7 +161,6 @@ export class ChatComponent {
         let obj = {
           defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also dont repeat unneccessary word like name and age.`,
           prompt: tempMessage,
-          history:this.new_history != '' && this.new_history != undefined && this.new_history.length > 0 ? this.new_history : [],
         };
         
         this.authService.sendMsg(obj).subscribe((data: any) => {
@@ -196,23 +195,7 @@ export class ChatComponent {
           this.isTyping = false; 
           if (data.code == 1) {
             this.rows = data.data;
-            this.new_history = this.rows.flatMap((row) => {
-              return [
-                {
-                  role: "user",
-                  parts: [{
-                    text: row.user_prompt
-                  }]
-                },
-                {
-                  role: "model",
-                  parts: [{
-                    text: row.text
-                  }]
-                }
-              ];
-            });
-            
+         
           } else {
             this.rows = data.data;
           }
@@ -222,6 +205,21 @@ export class ChatComponent {
     }
   }
   togglePulsate() {
+    Swal.fire({
+      title: "This feature is under development.",
+      width: 450,
+      padding: "1.5em",
+      color: "#716add",
+      background: "#fff url(/images/trees.png)",
+      backdrop: `
+        rgba(0,0,0,0.4)
+        url("/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
+    } as any).then(() => {
+      // this.selectedLanguage = 'english'; 
+    });
     this.isPulsating = !this.isPulsating;
 
     if (this.isPulsating) {

@@ -1,34 +1,26 @@
-/* .container.chat-container::after {
-  content: "";
-  background: url('/assets/border2.png') no-repeat; 
-  background-size: contain;
-  height: 20vh; 
-  width: 15vw; 
-  position: fixed;
-  bottom: 40vh;
-  left: 61vw;
-  transform: translateX(-50%); 
-  z-index: -1; 
-} */
 
-.container.chat-container::before {
+.container.chat-container {
+  position: relative;
+}
+
+.bg-image {
   content: "";
-  background: url('/assets/border1.png') no-repeat; 
   background-size: contain;
-  height: 136px;
+  
+  height: 156px;
   width: 150px; 
   position: fixed;
   top: 95px;
-  right: -4px;
-  z-index: 1; 
+  right: -13px;
+  z-index: 1;
 }
 
-.container.chat-container {
+/* .container.chat-container {
   border: 5px solid #fff;
   position: relative;
-  padding: 20px; /* Adjust padding as necessary */
-  z-index: 1; /* Ensure the container is above the background image */
-}
+  padding: 20px; 
+  z-index: 1; 
+} */
 
 
 
@@ -47,7 +39,6 @@
   }
 
    .logo-container {
-    margin-left: 10%;
     position: relative;
     display: inline-block; 
   }
@@ -55,7 +46,6 @@
   .logo-img {
     display: block;
     max-width: 100%;
-    /* height: auto; */
     border-radius: 10px;
     width: 300px;
     height:300px; 
@@ -122,9 +112,6 @@
     outline: none; 
     box-shadow: none;
   }
-  /* #language{
-    margin-right: 60%; ;
- } */
   .footer button {
     padding: 10px;
     border: none;
@@ -133,43 +120,18 @@
     color: #fff;
     cursor: pointer;
   }
-  /* .loginbtn {
-    margin-right: -100%;
-  } */
-  /* .siboth {
-   background-color: white;
-  } */
-  
   @media only screen and (max-width: 700px){
     .footer  input {
         width: 75% !important;
     }
-    /* .loginbtn{
-      margin-right: 5% !important;
-    } */
-    /* .siboth{
-      margin-top: -20% !important;
-      margin-right: 6% !important;
-    } */
-    /* .miclang{
-      margin-top: -42% !important;
-      margin-left:28% !important;
-
-    } */
-  
-   
     .selectlang{
       margin-bottom: 5% !important;
       margin-left: 25% !important;
     }
-
-    
   .logo-img {
     height: 180px !important;
-    margin-left: 9% !important;
     width: 250px !important;
   }
-
     .footer   {
       margin-top: 0.5rem !important;
       margin-left: 5% !important;
@@ -180,29 +142,22 @@
       margin-left: 5% !important;
   
     }
-    /* .greeting {
-      margin-top: 1.5rem !important;  
-      margin-left: 20% !important;
-    } */
     .logo-container{
       margin-top: 0.5rem !important;
-
     }
-    
     .input-group {
 
         width: 100%;
     }
     .animation-overlay{
-      left: 52% !important;
+      left: 43% !important;
       width: 18% !important;
       height: 120% !important;
     }
 
     .chat-container {
       height: 300px !important;
-      margin-left: 10% !important;
-      width: 105% !important;
+      width: 100% !important;
     }
     .nameclass{
       margin-top: -1.0rem !important;
@@ -261,8 +216,6 @@
     
   
     .greeting {
-      /* margin-left:"150px"; */
-      /* margin-top: 2px;  */
       color: #f59cf5;
       font-size: 24px; 
       font-weight: bold; 
@@ -272,7 +225,6 @@
     }
     .chat-container {
       background-color: #b08fff;
-      /* background: url('/assets/star3.jpg'); */
       padding: 20px;
       border-radius: 10px;
       max-width: 100%;
@@ -328,56 +280,17 @@
   .col-sm-1 {
     display: inline-block; 
   }
-  
-/* 
-  .message-main-sender {
-    text-align: left;
-    float: right;
-
-  }
-  
-  .message-main-receiver {
-    text-align: right;
-    margin-top: 10%;
-  }
-  
-  .sender .message-text {
-    background-color: #222;
-    border-radius: 10px;
-    padding: 10px;
-    display: inline-block;
-    text-align: left;
-
-    margin: 5px 0;
-  }
-  
-  .receiver .message-text {
-    background-color: #444;
-    border-radius: 10px;
-    padding: 10px;
-
-    margin: 5px 0;
-    text-align: left;
-    width: 70%;
-    float: left;
-
-  }
-  
-  .message-body {
-    margin: 10px 0;
-  }
-   */
 
    .message-main-sender {
     text-align: right;
     margin: 10px 0;
-    clear: both; /* Ensure each message starts on a new line */
+    clear: both; 
   }
   
   .message-main-receiver {
     text-align: left;
     margin: 10px 0;
-    clear: both; /* Ensure each message starts on a new line */
+    clear: both; 
   }
   
   .sender .message-text {
@@ -390,7 +303,7 @@
     float: right;
     max-width: 70%;
     word-wrap: break-word;
-    clear: both; /* Ensure each message starts on a new line */
+    clear: both; 
   }
   
   .receiver .message-text {
@@ -402,48 +315,47 @@
     max-width: 70%;
     word-wrap: break-word;
     float: left;
-    clear: both; /* Ensure each message starts on a new line */
+    clear: both;
   }
   
   .message-body {
     margin: 10px 0;
-    clear: both; /* Ensure each message starts on a new line */
+    clear: both;
   }
   
 
 
-  /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .container.chat-container::before {
+  .bg-image  {
    display: none;
   }
 }
 @media (max-width: 1200px) {
-  .container.chat-container::after {
+  .bg-image {
    display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .container.chat-container::after {
-    height: 12vh !important; /* Adjust height for smaller screens */
-    width: 12vw !important; /* Adjust width for smaller screens */
-    bottom: 10vh !important; /* Adjust bottom position for smaller screens */
-    left: 50vw !important;  /* Adjust left position for smaller screens */
+  .bg-image  {
+    height: 12vh !important; 
+    width: 12vw !important; 
+    bottom: 10vh !important;
+    left: 50vw !important;
   }
 }
 
 @media (max-width: 576px) {
-  .container.chat-container::after {
-    display: none; /* Hide the background image on smaller screens */
+  .bg-image  {
+    display: none; 
   }
 }
 
 .dots {
   display: inline-block;
-  transform: rotate(-90deg); /* Rotate the dots vertically */
-  font-size: 18px; /* Adjust the size as needed */
-  color: #ccc; /* Color of the dots */
+  transform: rotate(-90deg);
+  font-size: 18px; 
+  color: #ccc;
   margin-right: 5px; /* Spacing between dots and text */
 }
 /* chat.component.css */

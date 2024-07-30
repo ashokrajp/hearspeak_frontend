@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
+  loading: boolean = false;
 
 
   isSubmitted: boolean = false;
@@ -37,10 +38,9 @@ console.log("-----------hello");
     if (!this.LoginForm.valid) {
       return false;
     } else {
-    
+      this.loading = true;
       this.authService.login(this.LoginForm.value).subscribe((data: any) => {
         console.log("-----daata--------------------------------",data);
-        
         if (data.code == 1) {
           Swal.fire({
             toast: true, position: 'top-end',
@@ -57,6 +57,8 @@ console.log("-----------hello");
           this.router.navigateByUrl('/chat')
 
         } else {
+        console.log("-----daata-----------errror---------------------");
+
           Swal.fire({
             toast: true, position: 'top-end',
             showConfirmButton: false,
@@ -66,6 +68,8 @@ console.log("-----------hello");
             icon: 'error'
           })
         }
+        // this.loading = false;
+
       })
     }
   }

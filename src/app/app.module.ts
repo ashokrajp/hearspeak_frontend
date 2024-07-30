@@ -66,24 +66,7 @@ import { TermandconditionComponent } from './component/termandcondition/termandc
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
-    // {
-    //   provide: 'SocialAuthServiceConfig',
-    //   useValue: {
-    //     autoLogin: false,
-    //     providers: [
-    //       {
-    //         id: GoogleLoginProvider.PROVIDER_ID,
-    //         provider: new GoogleLoginProvider(
-    //           '1079679475602-dserppc23ip0rj8njaau4q8evbaubopa.apps.googleusercontent.com'
-    //         )
-    //       }
-        
-    //     ],
-    //     onError: (err) => {
-    //       console.error(err);
-    //     }
-    //   } as SocialAuthServiceConfig,
-    // }
+   
   ],
   
   bootstrap: [AppComponent]
