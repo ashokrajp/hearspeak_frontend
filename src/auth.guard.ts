@@ -7,51 +7,43 @@ import { AuthService } from './app/services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard  {
   image_name: string | null | undefined;
+  token: any
+
   constructor(private router: Router, private authService: AuthService) {
-
-    console.log("-------hello chat here");
-
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    const token = localStorage.getItem('token');
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    this. token = localStorage.getItem('token');
     this.image_name = localStorage.getItem('image_name');
-
-    if (!token) {
-      // If no token is present, do nothing and allow the navigation
-      return true;
-    }
-    
-    if (!this.image_name) {
-      // If no image_name is present, clear local storage and navigate to home
+ 
+    if (this.image_name === null || this.image_name === undefined) {
       console.log("No image name found, clearing local storage and redirecting to home");
       localStorage.clear();
       this.router.navigate(['/home']);
-      return false; // Block navigation
+      return false; 
+    } else if (!this.token){
+        
+      return true;
     }
-
-    return this.authService.validateToken({ token }).pipe(
-      map((data) => {
-        if (data.code === 1) {
-          // Token is valid
-          return true;
-        } else {
-          // Token is invalid, clear local storage and navigate to home
-          console.log("Token is invalid, clearing local storage and redirecting to home");
-          localStorage.clear();
-          this.router.navigate(['/home']);
-          return false; // Block navigation
-        }
-      }),
-      catchError((error) => {
-        // In case of an error, clear local storage and navigate to home
-        console.log("Error validating token, clearing local storage and redirecting to home", error);
-        localStorage.clear();
-        this.router.navigate(['/home']);
-        return of(false); // Block navigation
-      })
-    );
+      if (this.token) {
+        this.authService.validateToken({ token :this.token }).subscribe((data: any) => {
+          console.log("---------------data",data.code);
+          
+         if (data.code == '1') {
+           return true;
+         } else {
+           console.log("Token is invalid, clearing local storage and redirecting to home");
+           localStorage.clear();
+           this.router.navigate(['/home']);
+           return false; 
+         }
+       })
+        
+      }
+     
+      
+    return true;
   }
 }

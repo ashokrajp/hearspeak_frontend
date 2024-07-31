@@ -20,11 +20,7 @@ export class HomeComponent {
 
     });
     dialogRef.afterClosed().subscribe((result: boolean) => {
-      // console.log("result",result);
-      
       if (result) {
-        // this.loadProduct()
-        
       }
     });
   }

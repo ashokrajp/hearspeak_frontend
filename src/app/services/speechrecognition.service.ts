@@ -55,11 +55,9 @@ export class SpeechrecognitionService {
   requestMicrophonePermission() {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(() => {
-        // Permission granted
         console.log('Microphone permission granted');
       })
       .catch((error) => {
-        // Permission denied
         console.error('Microphone permission denied:', error);
       });
   }

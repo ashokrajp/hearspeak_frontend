@@ -38,13 +38,10 @@ export class SliderComponent {
       }else{
 
       }
-  // })
-// }
 })
   }
 
   logout() {
-    console.log("---------------logout");
     Swal.fire({
       title: 'Are you sure?',
       text: "You want to logout",
@@ -67,7 +64,6 @@ export class SliderComponent {
               icon: 'success'
             });
             localStorage.removeItem('token');
-            // Optionally redirect or perform other cleanup after logout
             this.router.navigate(['/home']);
 
           } else {

@@ -127,7 +127,7 @@ export class ChatComponent {
       
         
         let obj = {
-          defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also dont repeat unneccessary word like name and age.`,
+          defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also write message in ${this.selectedLanguage}. Don't repeat unneccessary word like name and age.`,
           prompt: tempMessage,
           name:this.name
         };
@@ -159,7 +159,7 @@ export class ChatComponent {
         }
         this.rows.push({ user_prompt: tempMessage });
         let obj = {
-          defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also dont repeat unneccessary word like name and age.`,
+          defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also write message in ${this.selectedLanguage}. Don't repeat unneccessary word like name and age.`,
           prompt: tempMessage,
         };
         

@@ -14,12 +14,4 @@ export class DashboardComponent {
   constructor(private fb: FormBuilder, private authServices: AuthService,  private router: Router) { 
   }
 
-  // ngOnInit() {
-  //   this.authService.authState.subscribe((user) => {
-  //     this.user = user;
-  //     // this.loggedIn = (user != null);
-  //     console.log("dsdsdsdsd",this.user);
-      
-  //   });
-  // }
 }

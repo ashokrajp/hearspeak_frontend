@@ -20,14 +20,11 @@ background: #efe9f9;
             contain 1 upper,1 lowercase,and 1 special character & 1 number</p>
         </div>
        
-        <!-- <button type="submit" class="btn btn-danger w-100">login Now</button> -->
         <button type="submit" class="btn btn-danger w-100 " [disabled]="loading" style="position: relative; height: 40px;">
           <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" ></span>
           <span *ngIf="!loading">Login Now</span>
         </button>
-        <!-- <div class="text-center mt-3">
-          <p style="color: white;">Don't have an account? <a routerLink="/signup" class="text-danger">Sign Up</a></p>
-        </div> -->
+      
       </form>
     </div>
   </div>

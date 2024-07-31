@@ -40,7 +40,6 @@ console.log("-----------hello");
     } else {
       this.loading = true;
       this.authService.login(this.LoginForm.value).subscribe((data: any) => {
-        console.log("-----daata--------------------------------",data);
         if (data.code == 1) {
           Swal.fire({
             toast: true, position: 'top-end',
@@ -51,14 +50,9 @@ console.log("-----------hello");
             icon: 'success'
           })
           localStorage.setItem('token', data.data.token)
-          // localStorage.setItem('name', data.data.name)
-          //  this.authService.storeNotPermissionData()
-
           this.router.navigateByUrl('/chat')
 
         } else {
-        console.log("-----daata-----------errror---------------------");
-
           Swal.fire({
             toast: true, position: 'top-end',
             showConfirmButton: false,
@@ -68,7 +62,7 @@ console.log("-----------hello");
             icon: 'error'
           })
         }
-        // this.loading = false;
+        this.loading = false;
 
       })
     }

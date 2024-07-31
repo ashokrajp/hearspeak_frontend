@@ -24,23 +24,7 @@ export class AuthService {
   }
   constructor(private httpClient: HttpClient) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 && error.error && error.error.code === "-1") {
-          // Clear localStorage
-        
-          localStorage.clear();
-          // Redirect to login or appropriate route
-          // this.router.navigate(['/login']);
-        }
-        return throwError(error);
-      })
-    );
-  }
   login = (body: any): Observable<any> => {
-    console.log("------------------hello in enter api");
-    
     return this.httpClient.post(`${environment.API_URL}${GLOBALS.LOGIN_URL}`, body, {
       headers: {
         'Content-Type': 'application/json',

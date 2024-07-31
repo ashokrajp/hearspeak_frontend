@@ -63,7 +63,7 @@ import { TermandconditionComponent } from './component/termandcondition/termandc
     HttpClientModule,
     MatButtonModule,
     MatMenuModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(), 
   ],
   providers: [
    

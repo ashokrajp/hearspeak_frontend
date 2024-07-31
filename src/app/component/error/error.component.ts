@@ -49,9 +49,7 @@ export class ErrorComponent {
         }
         break;
       default:
-        // if (!this.type) {
           this.type = 'Ooops..';
-        // }
         if (!this.title) {
           this.title = 'Something went wrong';
         }
