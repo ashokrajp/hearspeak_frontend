@@ -29,8 +29,6 @@ export class TextToSpeechService {
 //-----------------------------------first ------------------------//
  
 private getVoiceByLanguageAndGender(language: 'english' | 'hindi', gender: 'male' | 'female'): SpeechSynthesisVoice {
-  console.log("Requested language:", language, "Requested gender:", gender);
-
   const englishFemaleVoiceNames = ['Google UK English Female', 'Google US English Female'];
   const englishMaleVoiceNames = ['Google UK English Male', 'Google US English Male'];
   const hindiFemaleVoiceNames = ['Google हिन्दी महिला', 'Microsoft Neerja - Hindi (India)'];
@@ -44,16 +42,10 @@ private getVoiceByLanguageAndGender(language: 'english' | 'hindi', gender: 'male
       targetVoiceNames = gender === 'female' ? hindiFemaleVoiceNames : hindiMaleVoiceNames;
   }
 
-  console.log("Target voice names:", targetVoiceNames);
-
-  // Log available voices for debugging
-  console.log("Available voices:", this.voices.map(voice => ({ name: voice.name, lang: voice.lang })));
-
   // Prioritize Google हिंदी पुरुष for male Hindi
   if (language === 'hindi' && gender === 'male') {
       const hindiMalePriorityVoice = this.voices.find(voice => voice.name === 'Google हिंदी पुरुष');
       if (hindiMalePriorityVoice) {
-          console.log("Selected voice: Google हिंदी पुरुष");
           return hindiMalePriorityVoice;
       }
   }
@@ -124,7 +116,6 @@ private getVoiceByLanguageAndGender(language: 'english' | 'hindi', gender: 'male
 //------------------------------second------------------------------//
 
 // private getVoiceByLanguageAndGender(language: 'english' | 'hindi', gender: 'male' | 'female'): SpeechSynthesisVoice {
-//   console.log("Requested language:", language, "Requested gender:", gender);
 
 //   const englishFemaleVoiceNames = ['Google UK English Female', 'Google US English Female'];
 //   const englishMaleVoiceNames = ['Google UK English Male', 'Google US English Male'];

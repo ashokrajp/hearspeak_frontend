@@ -73,7 +73,6 @@ export class ChatComponent {
   ngOnInit(): void {
     this.getGeminiMsg()
 
-    console.log('ngOnInit - rows:', this.rows);
     this.breakpointObserver.observe([
       Breakpoints.Handset
     ]).subscribe(result => {
@@ -248,7 +247,6 @@ export class ChatComponent {
   changeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedLanguage = selectElement.value;
-    console.log('Language changed to:', this.selectedLanguage);
     if (this.selectedLanguage =='hindi' && this.image_name =='male') {
       Swal.fire({
         title: "This feature is under development.",

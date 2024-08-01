@@ -13,32 +13,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent {
-  token:any;
-  name:any;
+  token: any;
+  name: any;
 
 
-  constructor(private router: Router,private tts: TextToSpeechService, public speechRecognitionService: SpeechrecognitionService,private cdRef: ChangeDetectorRef ,public authService: AuthService) {
-    this.token=localStorage.getItem('token')
+  constructor(private router: Router, private tts: TextToSpeechService, public speechRecognitionService: SpeechrecognitionService, private cdRef: ChangeDetectorRef, public authService: AuthService) {
+    this.token = localStorage.getItem('token')
     this.name = localStorage.getItem('name');
 
-   }
+  }
 
   ngOnInit(): void {
-    this.token=localStorage.getItem('token')
+    this.token = localStorage.getItem('token')
   }
 
   clearChat() {
-  
-    let clearChat={
-      name:this.name
+
+    let clearChat = {
+      name: this.name
     }
     this.authService.clearChatdata(clearChat).subscribe((data) => {
       if (data.code == 1) {
-        this.authService.emitClearChat(); 
-      }else{
+        this.authService.emitClearChat();
+      } else {
 
       }
-})
+    })
   }
 
   logout() {
@@ -52,34 +52,45 @@ export class SliderComponent {
       confirmButtonText: 'Logout'
     }).then((result: any) => {
       if (result.isConfirmed) {
-        this.authService.logout().subscribe((data) => {
-          if (data.code == 1) {
-            Swal.fire({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              title: data.message,
-              icon: 'success'
-            });
-            localStorage.removeItem('token');
-            this.router.navigate(['/home']);
-
-          } else {
-            Swal.fire({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              title: data.message,
-              icon: 'error'
-            });
+        this.authService.logout().subscribe(
+          (data) => {
+            if (data.code == 1) {
+              Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                title: data.message,
+                icon: 'success'
+              });
+              localStorage.removeItem('token');
+              this.router.navigate(['/home']);
+            } else {
+              Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                title: data.message,
+                icon: 'error'
+              });
+              localStorage.removeItem('token');
+              this.router.navigate(['/home']);
+            }
+          },
+          (error) => {
+            console.error("Logout error:", error);
+            if (error.status === 401) {
+              localStorage.removeItem('token');
+              this.router.navigate(['/home']);
+            }
           }
-        });
+        );
+
       }
     });
   }
-  
+
 }
