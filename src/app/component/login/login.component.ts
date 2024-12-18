@@ -40,6 +40,8 @@ console.log("-----------hello");
     } else {
       this.loading = true;
       this.authService.login(this.LoginForm.value).subscribe((data: any) => {
+        console.log("-----------------------------------------------------dadta",data);
+        
         if (data.code == 1) {
           Swal.fire({
             toast: true, position: 'top-end',
