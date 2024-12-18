@@ -23,6 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+                "src/_redirects",
               {
                 "glob": ".htaccess",
                 "input": "./",
@@ -35,6 +36,7 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                "node_modules/@fortawesome/fontawesome-free/css/all.css"
             ],
+              "baseHref": "/",
             "scripts": []
           },
           "configurations": {
