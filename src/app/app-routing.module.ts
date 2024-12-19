@@ -36,7 +36,7 @@ const routes: Routes = [
     path: 'error/:type',
     component: ErrorComponent
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' }, // Wildcard rou
+ { path: '**', redirectTo: '', pathMatch: 'full' }, // Wildcard rou
 ];
 
 @NgModule({
