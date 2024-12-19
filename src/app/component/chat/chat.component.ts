@@ -47,17 +47,17 @@ export class ChatComponent {
   selectedImage: string = 'Theame';
   private subscription: Subscription;
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
-  constructor(private breakpointObserver: BreakpointObserver,private tts: TextToSpeechService, public speechRecognitionService: SpeechrecognitionService,private cdRef: ChangeDetectorRef ,public authService: AuthService) {
+  constructor(private breakpointObserver: BreakpointObserver, private tts: TextToSpeechService, public speechRecognitionService: SpeechrecognitionService, private cdRef: ChangeDetectorRef, public authService: AuthService) {
     this.image_name = localStorage.getItem('image_name')?.toString()
-    this.token=localStorage.getItem('token')
+    this.token = localStorage.getItem('token')
     this.name = localStorage.getItem('name');
     this.age = localStorage.getItem('age');
-  this.subscription=  this.authService.clearChat$.subscribe(() => {
+    this.subscription = this.authService.clearChat$.subscribe(() => {
       this.getGeminiMsg(); // Call your getChatListing method here
     });
-   }
+  }
 
-   toggleMute() {
+  toggleMute() {
     this.isMuted = !this.isMuted;
   }
 
@@ -77,25 +77,25 @@ export class ChatComponent {
       Breakpoints.Handset
     ]).subscribe(result => {
       this.isHandset = result.matches;
-      this.sidenavMode = this.isHandset ? 'over' : 'side'; 
+      this.sidenavMode = this.isHandset ? 'over' : 'side';
     });
-      this.image_name = localStorage.getItem('image_name'); 
-  
-      let greeting: string;
-      if (this.image_name == 'male') {
-        greeting = `Hello, I am ${this.name}, your AI friend.`;
-        const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
-        this.tts.speak(greeting,language, 'male');
+    this.image_name = localStorage.getItem('image_name');
 
-      } else if (this.image_name == 'female') {
-        const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
-        greeting = `HEllo, I am ${this.name}, your AI friend.`;
-        this.tts.speak(greeting,language, 'female');
-      } else {
-        const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
-        greeting = 'Hello, I am your AI friend.';
-        this.tts.speak(greeting,language, 'female'); 
-      }
+    let greeting: string;
+    if (this.image_name == 'male') {
+      greeting = `Hello, I am ${this.name}, your AI friend.`;
+      const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
+      this.tts.speak(greeting, language, 'male');
+
+    } else if (this.image_name == 'female') {
+      const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
+      greeting = `HEllo, I am ${this.name}, your AI friend.`;
+      this.tts.speak(greeting, language, 'female');
+    } else {
+      const language = this.selectedLanguage === 'english' ? 'english' : 'hindi';
+      greeting = 'Hello, I am your AI friend.';
+      this.tts.speak(greeting, language, 'female');
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -105,14 +105,14 @@ export class ChatComponent {
   private scrollToBottom(): void {
     try {
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
-    } catch(err) {
+    } catch (err) {
       console.error('Could not scroll to bottom:', err);
     }
   }
   populateInput(text: string) {
     this.message = text;
   }
- 
+
   sendMessage() {
     if (this.token) {
       if (this.message.trim()) {
@@ -123,12 +123,12 @@ export class ChatComponent {
           this.rows = [];
         }
         this.rows.push({ user_prompt: tempMessage });
-      
-        
+
+
         let obj = {
           defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also write message in ${this.selectedLanguage}. Don't repeat unneccessary word like name and age.`,
           prompt: tempMessage,
-          name:this.name
+          name: this.name
         };
         this.authService.sendMsg(obj).subscribe((data: any) => {
           this.isTyping = true;
@@ -143,64 +143,72 @@ export class ChatComponent {
               }
               this.rows.push({ text: data.data.text_response });
             } else {
-              this.rows=[];
+              this.rows = [];
             }
           }, 2000);
         });
       }
     } else {
-      if (this.message.trim()) {
-        const tempMessage = this.message;
-        this.sentMessages.push(tempMessage);
-        this.message = '';
-        if (!this.rows) {
-          this.rows = [];
-        }
-        this.rows.push({ user_prompt: tempMessage });
-        let obj = {
-          defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also write message in ${this.selectedLanguage}. Don't repeat unneccessary word like name and age.`,
-          prompt: tempMessage,
-        };
-        
-        this.authService.sendMsg(obj).subscribe((data: any) => {
-          this.isTyping = true;
-          setTimeout(() => {
-            this.isTyping = false;
-            if (data.code == 1) {
-              this.rows.push({ text: data.data.text_response });
-            } else {
-              this.rows=[]
-            }
-          }, 2000);
-        });
-      }
+      // if (this.message.trim()) {
+      //   const tempMessage = this.message;
+      //   this.sentMessages.push(tempMessage);
+      //   this.message = '';
+      //   if (!this.rows) {
+      //     this.rows = [];
+      //   }
+      //   this.rows.push({ user_prompt: tempMessage });
+      //   let obj = {
+      //     defult_prompt: `Please respond to whatever I say in a human-like manner, with short, friendly responses. talk to me like ${this.image_name}  and your name is ${this.name} and never think like you are an ai chatbot. Always assume you are a human and always your name is ${this.name}  and always I am a male and always reply in ${this.selectedLanguage} and also write message in ${this.selectedLanguage}. Don't repeat unneccessary word like name and age.`,
+      //     prompt: tempMessage,
+      //   };
+
+      //   this.authService.sendMsg(obj).subscribe((data: any) => {
+      //     this.isTyping = true;
+      //     setTimeout(() => {
+      //       this.isTyping = false;
+      //       if (data.code == 1) {
+      //         this.rows.push({ text: data.data.text_response });
+      //       } else {
+      //         this.rows=[]
+      //       }
+      //     }, 2000);
+      //   });
+      // }
+      Swal.fire({
+        toast: true, position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        title:'please login before send msg.',
+        // icon: 'error'
+      })
     }
   }
-  
-  
+
+
   toggleMenu() {
     if (this.menuTrigger) {
       this.menuTrigger.toggleMenu();
     }
   }
   getGeminiMsg() {
-    if (this.token !==null &&  this.token !== undefined ) {
-      let getChatData={
-        name:this.name
+    if (this.token !== null && this.token !== undefined) {
+      let getChatData = {
+        name: this.name
       }
-      this.isTyping = true; 
+      this.isTyping = true;
       this.authService.getGeminiMsg(getChatData).subscribe((data) => {
         setTimeout(() => {
-          this.isTyping = false; 
+          this.isTyping = false;
           if (data.code == 1) {
             this.rows = data.data;
-         
+
           } else {
             this.rows = data.data;
           }
-        }, 2000); 
+        }, 2000);
       });
-    
+
     }
   }
   togglePulsate() {
@@ -232,13 +240,13 @@ export class ChatComponent {
     if (this.speechRecognitionService.result) {
       this.message = this.speechRecognitionService.result;
       this.speechRecognitionService.result = '';
-      this.isPulsating = false; 
-      this.cdRef.detectChanges(); 
+      this.isPulsating = false;
+      this.cdRef.detectChanges();
     }
 
     if (this.speechRecognitionService.isListening !== this.isPulsating) {
       this.isPulsating = this.speechRecognitionService.isListening;
-      this.cdRef.detectChanges(); 
+      this.cdRef.detectChanges();
     }
   }
 
@@ -247,7 +255,7 @@ export class ChatComponent {
   changeLanguage(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedLanguage = selectElement.value;
-    if (this.selectedLanguage =='hindi' && this.image_name =='male') {
+    if (this.selectedLanguage == 'hindi' && this.image_name == 'male') {
       Swal.fire({
         title: "This feature is under development.",
         width: 450,
@@ -261,11 +269,11 @@ export class ChatComponent {
           no-repeat
         `
       } as any).then(() => {
-        this.selectedLanguage = 'english'; 
+        this.selectedLanguage = 'english';
       });
     } else {
-      
+
     }
-   
+
   }
 }
